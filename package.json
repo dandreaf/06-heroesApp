@@ -8,7 +8,11 @@
     "watch": "ng build --watch --configuration development",
     "test": "ng test",
     "serve:ssr:heroesApp": "node dist/heroes-app/server/server.mjs",
-    "backend": "json-server --watch data/db.json"
+    "backend": "json-server --watch data/db.json",
+    "build:href": "ng build --base-href ./",
+    "build:github": "npm run delete:docs && npm run build:href && npm run copy:dist",
+    "delete:docs": "del docs",
+    "copy:dist": "copyfiles dist/heroes-app/browser/* ./docs -f"
   },
   "private": true,
   "dependencies": {
@@ -24,6 +28,8 @@
     "@angular/platform-server": "^19.0.0",
     "@angular/router": "^19.0.0",
     "@angular/ssr": "^19.0.6",
+    "copyfiles": "^2.4.1",
+    "del-cli": "^6.0.0",
     "express": "^4.18.2",
     "rxjs": "~7.8.0",
     "tslib": "^2.3.0",
