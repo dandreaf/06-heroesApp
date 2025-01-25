@@ -1,0 +1,28 @@
+import { Component, Inject, inject } from '@angular/core';
+import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
+import { Hero } from '../../interfaces/hero.interface';
+
+@Component({
+  selector: 'app-confirm-dialog',
+  standalone: false,
+
+  templateUrl: './confirm-dialog.component.html',
+  styles: ``
+})
+export class ConfirmDialogComponent {
+  readonly dialogRef = inject(MatDialogRef<ConfirmDialogComponent>);
+  readonly data = inject<Hero>(MAT_DIALOG_DATA);
+
+  // constructor(
+  //   public dialogRef: MatDialogRef<ConfirmDialogComponent>,
+  //   @Inject(MAT_DIALOG_DATA) public data: Hero,
+  // ){}
+
+  onNoClick(): void {
+    this.dialogRef.close(false);
+  };
+
+  onConfirm(): void {
+    this.dialogRef.close(true)
+  };
+}
